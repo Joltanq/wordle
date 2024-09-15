@@ -1,13 +1,16 @@
 def score_guess(target, guess):
-    score = [0,0,0,0,0]
+    score = []
 
-    if target == guess:
-        score = [2,2,2,2,2]
-    print(score)
+    for character in guess:
+        if character in target:
+            score.append("1")
+        else:
+            score.append("0")
+    return score
 
 # Main
 target = "hello"
 guess = "world"
-score_guess(target,guess)
+print(score_guess(target,guess))
 
-# this is a test commit on score
+
