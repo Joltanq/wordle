@@ -4,16 +4,16 @@ def score_guess(target, guess):
 
     for character in guess:
         if character not in target:
-            score.append("0")
+            score.append(0)
         elif character == target[i]:
-            score.append("2")
+            score.append(2)
         else:
-            score.append("1")
+            score.append(1)
         i += 1
     return score
 
 # Main
-target = "hello"
+target = "world"
 guess = "world"
 print(score_guess(target,guess))
 
