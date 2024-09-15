@@ -1,11 +1,15 @@
 def score_guess(target, guess):
     score = []
+    i = 0
 
     for character in guess:
-        if character in target:
-            score.append("1")
-        else:
+        if character not in target:
             score.append("0")
+        elif character == target[i]:
+            score.append("2")
+        else:
+            score.append("1")
+        i += 1
     return score
 
 # Main
