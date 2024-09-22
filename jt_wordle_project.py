@@ -1,4 +1,7 @@
 def score_guess(target, guess):
+    # scores the guess of a user against the target word.
+    # takes the target word and the guess word as parameters
+    # functions returns the score as a list which represents if the letter is in the right place, in the word,or cant be found at all
     score = []
     position_of_character = 0
 
