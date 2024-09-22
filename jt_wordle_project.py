@@ -12,9 +12,18 @@ def score_guess(target, guess):
         i += 1
     return score
 
+def read_file(FILE_NAME,list_name):
+    file = open(FILE_NAME,'r')
+    for line in file:
+        list_name.append(line.strip())
+    file.close()
+    return list_name
+
+target_words = []
+target_words = read_file("target_words.txt",target_words)
+print(target_words)
+
 # Main
 target = "world"
 guess = "world"
 print(score_guess(target,guess))
-
-
