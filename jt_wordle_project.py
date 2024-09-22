@@ -22,6 +22,12 @@ def read_file(FILE_NAME,list_name):
     file.close()
     return list_name
 
+def help_message():
+# when called, gives the user some helpful tips like what the 0, 1 and 2 means
+# explains what the rules are
+
+
+
 
 # Main
 target_words = []
