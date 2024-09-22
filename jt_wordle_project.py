@@ -20,8 +20,9 @@ def read_file(FILE_NAME,list_name):
     return list_name
 
 target_words = []
+all_words = []
 target_words = read_file("target_words.txt",target_words)
-print(target_words)
+all_words = read_file("all_words.txt",all_words)
 
 # Main
 target = "world"
