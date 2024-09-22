@@ -1,15 +1,15 @@
 def score_guess(target, guess):
     score = []
-    i = 0
+    position_of_character = 0
 
     for character in guess:
         if character not in target:
             score.append(0)
-        elif character == target[i]:
+        elif character == target[position_of_character]:
             score.append(2)
         else:
             score.append(1)
-        i += 1
+        position_of_character += 1
     return score
 
 def read_file(FILE_NAME,list_name):
