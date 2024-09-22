@@ -25,6 +25,11 @@ target_words = []
 all_words = []
 target_words = read_file("target_words.txt",target_words)
 all_words = read_file("all_words.txt",all_words)
+print("start of target words:" + str(target_words[0:5]))
+print("end of target words:" + str(target_words[-5:]))
+print("start of all words:" + str(all_words[0:5]))
+print("end of all words:" + str(all_words[-5:]))
+
 target = "world"
 guess = "world"
-print(score_guess(target,guess))
+# print(score_guess(target,guess))
