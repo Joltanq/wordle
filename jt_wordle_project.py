@@ -48,12 +48,10 @@ all_words = []
 target_words = read_file("target_words.txt",target_words)
 all_words = read_file("all_words.txt",all_words)
 target = "world"
-check_validty(input("What is your guess:"),all_words)
-
 number_of_attempts = 0
 
 while number_of_attempts < 3:
-    guess = input("provide a guess")
+    guess = check_validty(input("What's your word"),all_words)
     if len(guess) != len(target):
         print("Your guess doesn't seem to be the right length")
     elif (score_guess(target,guess) == [2,2,2,2,2]):
