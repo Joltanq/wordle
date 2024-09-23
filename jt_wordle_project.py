@@ -48,37 +48,42 @@ def check_validty(guess,target_list):
             guess = input("What's your best guess: ")
 
 def remaining_words(target,guess):
-    ALPHABETS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
     guess_character_count = {}
     for character in guess:
         guess_character_count[character] = guess_character_count.get(character,0) +1
 
     for key in guess_character_count:
         if key not in target:
-            ALPHABETS.remove(key)
+            try:
+                ALPHABETS.remove(key)
+            except:
+                pass
     return ALPHABETS
 
 # Main
-# target_words = []
-# all_words = []
-# target_words = read_file("target_words.txt",target_words)
-# all_words = read_file("all_words.txt",all_words)
-# target = random.choice(target_words)
-# number_of_attempts = 0
-# print(target)
-#
-# help_message()
-# print("\n")
-# while number_of_attempts < 3:
-#     valid_guess = check_validty(input("What's your best guess: "),all_words)
-#     if len(valid_guess) != len(target):
-#         print("Your guess doesn't seem to be the right length")
-#     elif (target == valid_guess):
-#         print("Congratulations! You won!")
-#         break
-#     else:
-#         print(score_guess(target,valid_guess))
-#         number_of_attempts += 1
-# else:
-#     print("You ran out of attempts")
-#     print("The word you were looking for was " + target)
+ALPHABETS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+target_words = []
+all_words = []
+target_words = read_file("target_words.txt",target_words)
+all_words = read_file("all_words.txt",all_words)
+target = random.choice(target_words)
+number_of_attempts = 0
+print(target)
+
+help_message()
+print("\n")
+while number_of_attempts < 3:
+    valid_guess = check_validty(input("What's your best guess: "),all_words)
+    if len(valid_guess) != len(target):
+        print("Your guess doesn't seem to be the right length")
+    elif (target == valid_guess):
+        print("Congratulations! You won!")
+        break
+    else:
+        print(score_guess(target,valid_guess))
+        print("Try with these letters")
+        print(remaining_words(target,valid_guess))
+        number_of_attempts += 1
+else:
+    print("You ran out of attempts")
+    print("The word you were looking for was " + target)
