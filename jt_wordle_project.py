@@ -34,11 +34,20 @@ def help_message():
     print("2 means it's in the right spot")
     print("Type HELP at any time to bring back this message")
 
+def check_validty(guess,target_list):
+    while True:
+        if guess in target_list:
+            return guess
+        else:
+            print("That does not look like an English word")
+            guess = input("guess")
+
 # Main
 target_words = []
 all_words = []
 target_words = read_file("target_words.txt",target_words)
 all_words = read_file("all_words.txt",all_words)
 target = "world"
-guess = "world"
-print(score_guess(target,guess))
+
+check_validty(input("What is your guess:"),all_words)
+
