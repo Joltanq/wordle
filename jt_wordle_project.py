@@ -47,27 +47,40 @@ def check_validty(guess,target_list):
             print("That does not look like an English word")
             guess = input("What's your best guess: ")
 
-# Main
-target_words = []
-all_words = []
-target_words = read_file("target_words.txt",target_words)
-all_words = read_file("all_words.txt",all_words)
-target = random.choice(target_words)
-number_of_attempts = 0
-print(target)
+def remaining_words(target,guess):
+    ALPHABETS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    for character in guess:
+        if character not in target:
+            ALPHABETS.remove(character)
+            # print(ALPHABETS)
+    return ALPHABETS
 
-help_message()
-print("\n")
-while number_of_attempts < 3:
-    valid_guess = check_validty(input("What's your best guess: "),all_words)
-    if len(valid_guess) != len(target):
-        print("Your guess doesn't seem to be the right length")
-    elif (target == valid_guess):
-        print("Congratulations! You won!")
-        break
-    else:
-        print(score_guess(target,valid_guess))
-        number_of_attempts += 1
-else:
-    print("You ran out of attempts")
-    print("The word you were looking for was " + target)
+print(remaining_words("aside","zzzzz"))
+
+
+# do this as a tuple instead
+
+# Main
+# target_words = []
+# all_words = []
+# target_words = read_file("target_words.txt",target_words)
+# all_words = read_file("all_words.txt",all_words)
+# target = random.choice(target_words)
+# number_of_attempts = 0
+# print(target)
+#
+# help_message()
+# print("\n")
+# while number_of_attempts < 3:
+#     valid_guess = check_validty(input("What's your best guess: "),all_words)
+#     if len(valid_guess) != len(target):
+#         print("Your guess doesn't seem to be the right length")
+#     elif (target == valid_guess):
+#         print("Congratulations! You won!")
+#         break
+#     else:
+#         print(score_guess(target,valid_guess))
+#         number_of_attempts += 1
+# else:
+#     print("You ran out of attempts")
+#     print("The word you were looking for was " + target)
