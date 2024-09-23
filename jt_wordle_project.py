@@ -56,6 +56,7 @@ target = random.choice(target_words)
 number_of_attempts = 0
 print(target)
 
+help_message()
 while number_of_attempts < 3:
     valid_guess = check_validty(input("What's your best guess: "),all_words)
     if len(valid_guess) != len(target):
