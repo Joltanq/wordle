@@ -51,16 +51,18 @@ target_words = read_file("target_words.txt",target_words)
 all_words = read_file("all_words.txt",all_words)
 target = random.choice(target_words)
 number_of_attempts = 0
+print(target)
 
 while number_of_attempts < 3:
-    valid_guess = check_validty(input("What's your word"),all_words)
+    valid_guess = check_validty(input("What's your best guess: "),all_words)
     if len(valid_guess) != len(target):
         print("Your guess doesn't seem to be the right length")
-    elif (score_guess(target,valid_guess) == [2,2,2,2,2]):
+    elif (target == valid_guess):
         print("Congratulations! You won!")
         break
     else:
         print(score_guess(target,valid_guess))
         number_of_attempts += 1
-print("You ran out of attempts")
-print("The word you were looking for was " + target)
+else:
+    print("You ran out of attempts")
+    print("The word you were looking for was " + target)
