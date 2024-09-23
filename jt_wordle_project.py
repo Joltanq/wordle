@@ -38,17 +38,15 @@ def score_guess(target, guess):
     position = 0
     for score_position in score:
         if score_position != "a":
-            position += 1
-            continue
+            pass
         elif str(guess[position]) in guess_character_count.keys():
             score[position] = 1
-            position += 1
         else:
             score[position] = 0
-            position += 1
+        position += 1
     return score
 
-# print(score_guess("world","hello"))
+print(score_guess("world","hello"))
 print(score_guess("cheek","erred"))
 #
 # def read_file(FILE_NAME,list_name):
