@@ -51,14 +51,14 @@ target = "world"
 number_of_attempts = 0
 
 while number_of_attempts < 3:
-    guess = check_validty(input("What's your word"),all_words)
-    if len(guess) != len(target):
+    valid_guess = check_validty(input("What's your word"),all_words)
+    if len(valid_guess) != len(target):
         print("Your guess doesn't seem to be the right length")
-    elif (score_guess(target,guess) == [2,2,2,2,2]):
+    elif (score_guess(target,valid_guess) == [2,2,2,2,2]):
         print("Congratulations! You won!")
         break
     else:
-        print(score_guess(target,guess))
+        print(score_guess(target,valid_guess))
         number_of_attempts += 1
 print("You ran out of attempts")
 print("The word you were looking for was " + target)
