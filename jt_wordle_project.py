@@ -25,9 +25,14 @@ def read_file(FILE_NAME,list_name):
 def help_message():
 # when called, gives the user some helpful tips like what the 0, 1 and 2 means
 # explains what the rules are
-
-
-
+    print("This is a game of Wordle")
+    print("The aim of the game is to guess the word we've selected")
+    print("They have to be valid English words, and of the same length as the target word to count as an attempt")
+    print("Each individual character is scored as a 0,1 or 2")
+    print("0 means it does not exist in the word")
+    print("1 means it's in the word, but in the wrong spot")
+    print("2 means it's in the right spot")
+    print("Type HELP at any time to bring back this message")
 
 # Main
 target_words = []
