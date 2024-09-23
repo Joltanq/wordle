@@ -1,15 +1,13 @@
 import random
 
-def decrease_or_pop(guess_dict):
+def decrease_and_pop(guess_dict,item_to_remove):
     for key, value in guess_dict.items():
-        value -= 1
+        if key == item_to_remove:
+            guess_dict[item_to_remove] = guess_dict[item_to_remove] - 1
+    # creates a smaller dictionary, only bringing across items that do not have value = 0
+    filtered_dict = {k :v for k,v in guess_dict.items() if v != 0}
+    return filtered_dict
 
-    if value == 0:
-            guess_dict.pop(key)
-        # else:
-        #     pass
-    return guess_dict
-#            this function is not working
 
 def score_guess(target, guess):
     # scores the guess of a user against the target word.
@@ -18,44 +16,40 @@ def score_guess(target, guess):
     score = []
     position_of_character = 0
     guess_character_count = {}
-    for character in guess:
+    # creates a dictionary with letters in the target word
+    # then creates a placeholder list with As
+    # first remove the characters which are a given
+    # then if they're in the wrong place, or there aren't any more "allocations" like t = hello, g = world
+    for character in target:
         guess_character_count[character] = guess_character_count.get(character,0) +1
 
-    # target = "break"
     for characters in range(len(target)):
         score.append("a")
 
-    for character in guess:
-        if character not in target:
+    for guess_character in guess:
+        if guess_character not in target:
             score[position_of_character] = 0
-        elif character == target[position_of_character]:
+        elif guess_character == target[position_of_character]:
             score[position_of_character] = 2
-            decrease_or_pop(guess_character_count)
-            # guess_character_count.pop(character)
-        position_of_character += 1
-
-        # instead of pop, i should -1 instad?
-    # i = 0
-    # while i <len(target):
-    # score[score.index("a")] =1\
-    position_of_character = 0
-    for value in score:
-        if value == "a":
-            score[position_of_character] = 1
+            guess_character_count = decrease_and_pop(guess_character_count, guess_character)
         position_of_character += 1
 
 
-    # for character in guess:
-    #     if character in guess_character_count.keys():
-    #         score[guess.index(character)] = 1
-    #         decrease_or_pop(guess_character_count)
-            # guess_character_count.pop(character)
-
-    # score[score.index("a")] = 0
+    position = 0
+    for score_position in score:
+        if score_position != "a":
+            position += 1
+            continue
+        elif str(guess[position]) in guess_character_count.keys():
+            score[position] = 1
+            position += 1
+        else:
+            score[position] = 0
+            position += 1
     return score
 
-print(score_guess("world","hello"))
-# print(score_guess("cheek","erred"))
+# print(score_guess("world","hello"))
+print(score_guess("cheek","erred"))
 #
 # def read_file(FILE_NAME,list_name):
 #     file = open(FILE_NAME,'r')
