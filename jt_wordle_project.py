@@ -40,9 +40,12 @@ def check_validty(guess,target_list):
     while True:
         if guess in target_list:
             return guess
+        elif guess == "help":
+            help_message()
+            guess = input("What's your best guess: ")
         else:
             print("That does not look like an English word")
-            guess = input("guess")
+            guess = input("What's your best guess: ")
 
 # Main
 target_words = []
