@@ -1,3 +1,5 @@
+import random
+
 def score_guess(target, guess):
     # scores the guess of a user against the target word.
     # takes the target word and the guess word as parameters
@@ -47,7 +49,7 @@ target_words = []
 all_words = []
 target_words = read_file("target_words.txt",target_words)
 all_words = read_file("all_words.txt",all_words)
-target = "world"
+target = random.choice(target_words)
 number_of_attempts = 0
 
 while number_of_attempts < 3:
