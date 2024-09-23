@@ -40,5 +40,5 @@ all_words = []
 target_words = read_file("target_words.txt",target_words)
 all_words = read_file("all_words.txt",all_words)
 target = "world"
-guess = "world"
+guess = input("provide a guess")
 print(score_guess(target,guess))
