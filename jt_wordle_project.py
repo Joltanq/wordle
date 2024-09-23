@@ -15,13 +15,13 @@ def score_guess(target, guess):
     # functions returns the score as a list which represents if the letter is in the right place, in the word,or cant be found at all
     score = []
     position_of_character = 0
-    guess_character_count = {}
+    target_character_count = {}
     # creates a dictionary with letters in the target word
     # then creates a placeholder list with As
     # first remove the characters which are a given
     # then if they're in the wrong place, or there aren't any more "allocations" like t = hello, g = world
     for character in target:
-        guess_character_count[character] = guess_character_count.get(character,0) +1
+        target_character_count[character] = target_character_count.get(character, 0) + 1
 
     for characters in range(len(target)):
         score.append("a")
@@ -31,7 +31,7 @@ def score_guess(target, guess):
             score[position_of_character] = 0
         elif guess_character == target[position_of_character]:
             score[position_of_character] = 2
-            guess_character_count = decrease_and_pop(guess_character_count, guess_character)
+            target_character_count = decrease_and_pop(target_character_count, guess_character)
         position_of_character += 1
 
 
@@ -39,7 +39,7 @@ def score_guess(target, guess):
     for score_position in score:
         if score_position != "a":
             pass
-        elif str(guess[position]) in guess_character_count.keys():
+        elif str(guess[position]) in target_character_count.keys():
             score[position] = 1
         else:
             score[position] = 0
