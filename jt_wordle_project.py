@@ -83,6 +83,7 @@ while number_of_attempts < 3:
         print(score_guess(target,valid_guess))
         print("Try with these letters")
         print(remaining_words(target,valid_guess))
+        print("\n")
         number_of_attempts += 1
 else:
     print("You ran out of attempts")
