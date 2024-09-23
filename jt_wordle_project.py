@@ -49,16 +49,14 @@ def check_validty(guess,target_list):
 
 def remaining_words(target,guess):
     ALPHABETS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    guess_character_count = {}
     for character in guess:
-        if character not in target:
-            ALPHABETS.remove(character)
-            # print(ALPHABETS)
+        guess_character_count[character] = guess_character_count.get(character,0) +1
+
+    for key in guess_character_count:
+        if key not in target:
+            ALPHABETS.remove(key)
     return ALPHABETS
-
-print(remaining_words("aside","zzzzz"))
-
-
-# do this as a tuple instead
 
 # Main
 # target_words = []
