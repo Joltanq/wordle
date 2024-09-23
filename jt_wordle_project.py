@@ -1,5 +1,16 @@
 import random
 
+def decrease_or_pop(guess_dict):
+    for key, value in guess_dict.items():
+        value -= 1
+
+    if value == 0:
+            guess_dict.pop(key)
+        # else:
+        #     pass
+    return guess_dict
+#            this function is not working
+
 def score_guess(target, guess):
     # scores the guess of a user against the target word.
     # takes the target word and the guess word as parameters
@@ -17,26 +28,34 @@ def score_guess(target, guess):
     for character in guess:
         if character not in target:
             score[position_of_character] = 0
-            guess_character_count.pop(character)
         elif character == target[position_of_character]:
             score[position_of_character] = 2
-            guess_character_count.pop(character)
-        # instead of pop, i should -1 instad?
+            decrease_or_pop(guess_character_count)
+            # guess_character_count.pop(character)
         position_of_character += 1
 
-    for character in guess:
-        if character in guess_character_count.keys():
-            score[guess.index(character)] = 1
-            guess_character_count.pop(character)
-        #     i need the loop, but it not changing my "a"
-        else:
-            score[score.index("a")] = 0
-            # position_of_character += 1
+        # instead of pop, i should -1 instad?
+    # i = 0
+    # while i <len(target):
+    # score[score.index("a")] =1\
+    position_of_character = 0
+    for value in score:
+        if value == "a":
+            score[position_of_character] = 1
+        position_of_character += 1
+
+
+    # for character in guess:
+    #     if character in guess_character_count.keys():
+    #         score[guess.index(character)] = 1
+    #         decrease_or_pop(guess_character_count)
+            # guess_character_count.pop(character)
+
+    # score[score.index("a")] = 0
     return score
 
-
-
 print(score_guess("world","hello"))
+# print(score_guess("cheek","erred"))
 #
 # def read_file(FILE_NAME,list_name):
 #     file = open(FILE_NAME,'r')
