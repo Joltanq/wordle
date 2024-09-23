@@ -1,11 +1,12 @@
 import random
 
-def decrease_and_pop(guess_dict,item_to_remove):
+
+def decrease_and_pop(guess_dict, item_to_remove):
     for key, value in guess_dict.items():
         if key == item_to_remove:
             guess_dict[item_to_remove] = guess_dict[item_to_remove] - 1
     # creates a smaller dictionary, only bringing across items that do not have value = 0
-    filtered_dict = {k :v for k,v in guess_dict.items() if v != 0}
+    filtered_dict = {k: v for k, v in guess_dict.items() if v != 0}
     return filtered_dict
 
 
@@ -34,7 +35,6 @@ def score_guess(target, guess):
             target_character_count = decrease_and_pop(target_character_count, guess_character)
         position_of_character += 1
 
-
     position = 0
     for score_position in score:
         if score_position != "a":
@@ -46,19 +46,18 @@ def score_guess(target, guess):
         position += 1
     return score
 
-print(score_guess("world","hello"))
-print(score_guess("cheek","erred"))
 
-def read_file(FILE_NAME,list_name):
-    file = open(FILE_NAME,'r')
+def read_file(FILE_NAME, list_name):
+    file = open(FILE_NAME, 'r')
     for line in file:
         list_name.append(line.strip())
     file.close()
     return list_name
 
-def help_message():
+
 # when called, gives the user some helpful tips like what the 0, 1 and 2 means
 # explains what the rules are
+def help_message():
     print("This is a game of Wordle")
     print("The aim of the game is to guess the word we've selected")
     print("They have to be valid English words, and of the same length as the target word to count as an attempt")
@@ -68,7 +67,8 @@ def help_message():
     print("2 means it's in the right spot")
     print("Type HELP at any time to bring back this message")
 
-def check_validty(guess,target_list):
+
+def check_validity(guess, target_list):
     while True:
         if guess in target_list:
             return guess
@@ -79,10 +79,11 @@ def check_validty(guess,target_list):
             print("That does not look like an English word")
             guess = input("What's your best guess: ")
 
-def remaining_words(target,guess):
+
+def remaining_words(target, guess):
     guess_character_count = {}
     for character in guess:
-        guess_character_count[character] = guess_character_count.get(character,0) +1
+        guess_character_count[character] = guess_character_count.get(character, 0) + 1
 
     for key in guess_character_count:
         if key not in target:
@@ -92,29 +93,34 @@ def remaining_words(target,guess):
                 pass
     return ALPHABETS
 
+
 # Main
 ALPHABETS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 target_words = []
 all_words = []
-target_words = read_file("target_words.txt",target_words)
-all_words = read_file("all_words.txt",all_words)
+target_words = read_file("target_words.txt", target_words)
+all_words = read_file("all_words.txt", all_words)
 target = random.choice(target_words)
 number_of_attempts = 0
-print(target)
+# helper or test scenarios
+# print(target)
+# print(score_guess("world","hello"))
+# print(score_guess("cheek","erred"))
 
 help_message()
-print("\n")
+print("")
+
 while number_of_attempts < 3:
-    valid_guess = check_validty(input("What's your best guess: "),all_words)
+    valid_guess = check_validity(input("What's your best guess: "), all_words)
     if len(valid_guess) != len(target):
         print("Your guess doesn't seem to be the right length")
-    elif (target == valid_guess):
+    elif target == valid_guess:
         print("Congratulations! You won!")
         break
     else:
-        print(score_guess(target,valid_guess))
+        print(score_guess(target, valid_guess))
         print("Try with these letters")
-        print(remaining_words(target,valid_guess))
+        print(remaining_words(target, valid_guess))
         print("\n")
         number_of_attempts += 1
 else:
