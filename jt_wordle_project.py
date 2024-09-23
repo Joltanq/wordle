@@ -40,5 +40,11 @@ all_words = []
 target_words = read_file("target_words.txt",target_words)
 all_words = read_file("all_words.txt",all_words)
 target = "world"
-guess = input("provide a guess")
-print(score_guess(target,guess))
+
+while True:
+    guess = input("provide a guess")
+    if (score_guess(target,guess) == [2,2,2,2,2]):
+        print("Congratulations! You won!")
+        break
+    else:
+        print(score_guess(target,guess))
