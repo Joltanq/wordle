@@ -1,5 +1,6 @@
 import random
 
+
 def decrease_and_pop(guess_dict, item_to_remove):
     for key, value in guess_dict.items():
         if key == item_to_remove:
